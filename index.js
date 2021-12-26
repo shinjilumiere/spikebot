@@ -10,16 +10,19 @@ bot.on('ready', () => {
 });
 
 bot.on('message', msg => {
-  if (msg.content === 'ping') {
-    msg.reply('pong');
-    msg.channel.send('pong');
-
-  } else if (msg.content.startsWith('!kick')) {
-    if (msg.mentions.users.size) {
-      const taggedUser = msg.mentions.users.first();
-      msg.channel.send(`You wanted to kick: ${taggedUser.username}`);
-    } else {
-      msg.reply('Please tag a valid user!');
+  if (msg.content === 's!hello') {
+    msg.reply('Hello!');
+  }
+  else if(msg.content === 's!loop') {
+    for (i=0; i<4; i++) {
+      setTimeout(function() {
+        console.info('Looping');
+        repeatMessage(msg);
+      }, 500);
     }
   }
 });
+
+function repeatMessage(msg) {
+  msg.channel.send('looping');
+}
